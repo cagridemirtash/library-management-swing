@@ -8,7 +8,7 @@ public class UpdateFrame extends Frame {
 
     // TODO: Değişkenler File dosyasından çekilecek.
 
-    String bookName = "", bookAuthor = "", bookTopic = " ", bookPageNumber = "";
+    private String bookName = "", bookAuthor = "", bookTopic = " ", bookPageNumber = "";
 
     UpdateFrame() {
         JPanel updatePanel = new JPanel();
@@ -45,16 +45,16 @@ public class UpdateFrame extends Frame {
         updatePanel.add(topic);
         updatePanel.add(topicField);
 
-        JLabel saveButtonLabel = new JLabel("Click Button for save -->");
-        JButton saveButton = new JButton("Save");
-        saveButton.addActionListener(new ActionListener() {
+        JLabel updateButtonLabel = new JLabel("Click Button for update -->");
+        JButton updateButton = new JButton("Update");
+        updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO: Save Operations
             }
         });
-        updatePanel.add(saveButtonLabel);
-        updatePanel.add(saveButton);
+        updatePanel.add(updateButtonLabel);
+        updatePanel.add(updateButton);
 
         super.add(updatePanel);
     }

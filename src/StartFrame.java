@@ -26,11 +26,18 @@ public class StartFrame extends JFrame{
                 new UpdateFrame();
             }
         });
-        JButton list = new JButton("List");
-        list.addActionListener(new ActionListener() {
+        JButton listAll = new JButton("List All Books");
+        listAll.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ListFrame();
+                new ListAllFrame();
+            }
+        });
+        JButton listSingle = new JButton("List a Book");
+        listSingle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ListSingleFrame();
             }
         });
         JButton delete = new JButton("Delete");
@@ -46,9 +53,14 @@ public class StartFrame extends JFrame{
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(2,2));
 
+        JPanel listPanel = new JPanel();
+        listPanel.setLayout(new GridLayout(2,0));
+        listPanel.add(listAll);
+        listPanel.add(listSingle);
+
         panel.add(create);
         panel.add(update);
-        panel.add(list);
+        panel.add(listPanel);
         panel.add(delete);
 
         frame.add(panel);

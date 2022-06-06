@@ -21,7 +21,7 @@ public class UpdateFrame extends Frame {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Search Operations
+                // TODO: Search business.abstracts.Operations
             }
         });
         updatePanel.add(searchKey);
@@ -50,7 +50,7 @@ public class UpdateFrame extends Frame {
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Save Operations
+                // TODO: Save business.abstracts.Operations
             }
         });
         updatePanel.add(updateButtonLabel);

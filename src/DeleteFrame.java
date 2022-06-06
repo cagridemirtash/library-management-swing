@@ -18,7 +18,7 @@ public class DeleteFrame extends Frame {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Search Operations
+                // TODO: Search business.abstracts.Operations
             }
         });
         updatePanel.add(searchKey);
@@ -47,7 +47,7 @@ public class DeleteFrame extends Frame {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Delete Operations
+                // TODO: Delete business.abstracts.Operations
             }
         });
         updatePanel.add(deleteButtonLabel);

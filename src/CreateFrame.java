@@ -1,12 +1,18 @@
+import business.abstracts.Operations;
+import business.concretes.FileOperations;
+import entities.Book;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class CreateFrame extends Frame {
     public JTextField bookName, bookAuthor, bookPageNumber, bookTopic;
-
+    private Book book;
     CreateFrame(){
+        FileOperations operations=new FileOperations();
         JPanel createPanel = new JPanel();
         createPanel.setLayout(new GridLayout(5,2));
         //Book Name Start
@@ -34,7 +40,20 @@ public class CreateFrame extends Frame {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Save Operations
+                book=new Book();
+
+                try {
+                    book.setId(operations.lastIndex());
+                    book.setBookName(bookName.getText());
+                    book.setBookAuthor(bookAuthor.getText());
+                    book.setPageNumber(Integer.parseInt(bookPageNumber.getText()));
+                    book.setBookTopic(bookTopic.getText());
+
+                    operations.AddBook(book);
+                } catch (IOException ex) {
+                    System.out.println("IO exception");
+                }
+
             }
         });
         createPanel.add(saveButtonLabel);

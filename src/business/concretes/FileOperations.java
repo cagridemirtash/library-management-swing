@@ -10,22 +10,22 @@ import java.util.List;
 public class FileOperations implements Operations {
     @Override
     public void addBook(Book book) throws IOException {
-        String line=book.getId()+","+book.getBookName()+","+book.getBookAuthor()+","+book.getPageNumber()+","+book.getBookTopic()+"\n";
-        File file = new File("data.txt");
-        FileWriter fileWriter=new FileWriter(file,true);
-        BufferedWriter bufferedWriter=new BufferedWriter(fileWriter);
-        bufferedWriter.write(line);
-        bufferedWriter.close();
+    fileWriter(book,true);
     }
 
     @Override
     public void deleteBook(int id) throws IOException {
-        clearFile();
         List<Book> list=getAllBook();
+        int flag=0;
         for (Book book:list
              ) {
             if (book.getId()!=id){
-                addBook(book);
+                if (flag==0){
+                    fileWriter(book,false);
+                }
+                else {
+                    fileWriter(book,true);
+            }
             }
         }
     }
@@ -79,10 +79,10 @@ public class FileOperations implements Operations {
         return sonIndex+1;
 
     }
-    private void clearFile() throws IOException {
-        String line="";
+    private void fileWriter(Book book,boolean writeType) throws IOException {
+        String line=book.getId()+","+book.getBookName()+","+book.getBookAuthor()+","+book.getPageNumber()+","+book.getBookTopic()+"\n";
         File file = new File("data.txt");
-        FileWriter fileWriter=new FileWriter(file,false);
+        FileWriter fileWriter=new FileWriter(file,writeType);
         BufferedWriter bufferedWriter=new BufferedWriter(fileWriter);
         bufferedWriter.write(line);
         bufferedWriter.close();

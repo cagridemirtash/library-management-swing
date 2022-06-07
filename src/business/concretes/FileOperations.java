@@ -10,23 +10,22 @@ import java.util.List;
 public class FileOperations implements Operations {
     @Override
     public void addBook(Book book) throws IOException {
-    fileWriter(book,true);
+        String line=String.format("%d,%s,%s,%d,%s\n",book.getId(),book.getBookName(),book.getBookAuthor(),book.getPageNumber(),book.getBookTopic());
+        File file = new File("data.txt");
+        FileWriter fileWriter=new FileWriter(file,true);
+        BufferedWriter bufferedWriter=new BufferedWriter(fileWriter);
+        bufferedWriter.write(line);
+        bufferedWriter.close();
     }
 
     @Override
     public void deleteBook(int id) throws IOException {
         List<Book> list=getAllBook();
-        int flag=0;
+        fileClear();
         for (Book book:list
              ) {
             if (book.getId()!=id){
-                if (flag==0){
-                    fileWriter(book,false);
-                }
-                else {
-                    flag++;
-                    fileWriter(book,true);
-            }
+              addBook(book);
             }
         }
     }
@@ -80,18 +79,10 @@ public class FileOperations implements Operations {
         return sonIndex+1;
 
     }
-    private void fileWriter(Book book,boolean writeType) throws IOException {
-        String line=book.getId()+","+book.getBookName()+","+book.getBookAuthor()+","+book.getPageNumber()+","+book.getBookTopic()+"\n";
-        File file = new File("data.txt");
-        FileWriter fileWriter=new FileWriter(file,writeType);
-        BufferedWriter bufferedWriter=new BufferedWriter(fileWriter);
-        bufferedWriter.write(line);
-        bufferedWriter.close();
-    }
     public double avgFileNumber(List<Book>list)  {
         List<Integer>numberList=new ArrayList<>();
         for (Book book :
-                list) {numberList.add(book.getId());
+                list) {numberList.add(book.getPageNumber());
         }
 
         return numberList.stream().mapToInt(a -> a).average().orElse(0);
@@ -100,11 +91,19 @@ public class FileOperations implements Operations {
         int sum=0;
         List<Integer>numberList=new ArrayList<>();
         for (Book book :
-                list) {numberList.add(book.getId());
+                list) {numberList.add(book.getPageNumber());
         }
         return numberList.stream().reduce(0, Integer::sum);
     }
     public int  bookCount(List<Book>list){
         return list.size();
     }
+    private void fileClear() throws IOException {
+        File file = new File("data.txt");
+        FileWriter fileWriter=new FileWriter(file,false);
+        BufferedWriter bufferedWriter=new BufferedWriter(fileWriter);
+        bufferedWriter.write("");
+        bufferedWriter.close();
+    }
+
 }

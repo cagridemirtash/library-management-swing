@@ -8,8 +8,11 @@ import java.util.List;
 
 public interface Operations {
    public void AddBook  (Book book) throws IOException;
-   public void DeleteBook(int id);
-   public Book GetBookById(int id);
+   public void DeleteBook(int id) throws IOException;
+   public Book GetBookById(int id) throws IOException;
    public List<Book> GetAllBook() throws IOException;
    public int lastIndex() throws IOException;
+   public double avgFileNumber(List<Book>list);
+   public int sumPageNumber(List<Book>list);
+   public int  bookCount(List<Book>list);
 }

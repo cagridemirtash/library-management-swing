@@ -73,7 +73,7 @@ public class FileOperations implements Operations {
         return sonIndex+1;
 
     }
-    public void fileWriter(Book book,boolean writeType) throws IOException {
+    private void fileWriter(Book book,boolean writeType) throws IOException {
         String line=book.getId()+","+book.getBookName()+","+book.getBookAuthor()+","+book.getPageNumber()+","+book.getBookTopic()+"\n";
         File file = new File("data.txt");
         FileWriter fileWriter=new FileWriter(file,writeType);

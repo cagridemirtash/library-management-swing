@@ -49,7 +49,7 @@ public class CreateFrame extends Frame {
                     book.setPageNumber(Integer.parseInt(bookPageNumber.getText()));
                     book.setBookTopic(bookTopic.getText());
 
-                    operations.AddBook(book);
+                    operations.addBook(book);
                 } catch (IOException ex) {
                     System.out.println("IO exception");
                 }

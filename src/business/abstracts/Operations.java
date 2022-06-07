@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.util.List;
 
 public interface Operations {
-   public void AddBook  (Book book) throws IOException;
-   public void DeleteBook(int id) throws IOException;
-   public Book GetBookById(int id) throws IOException;
-   public List<Book> GetAllBook() throws IOException;
+   public void addBook  (Book book) throws IOException;
+   public void deleteBook(int id) throws IOException;
+   public Book getBookById(int id) throws IOException;
+   public List<Book> getAllBook() throws IOException;
    public int lastIndex() throws IOException;
    public double avgFileNumber(List<Book>list);
    public int sumPageNumber(List<Book>list);

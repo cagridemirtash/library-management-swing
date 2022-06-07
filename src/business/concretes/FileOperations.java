@@ -9,24 +9,30 @@ import java.util.List;
 
 public class FileOperations implements Operations {
     @Override
-    public void AddBook(Book book) throws IOException {
-        fileWriter(book,true);
+    public void addBook(Book book) throws IOException {
+        String line=book.getId()+","+book.getBookName()+","+book.getBookAuthor()+","+book.getPageNumber()+","+book.getBookTopic()+"\n";
+        File file = new File("data.txt");
+        FileWriter fileWriter=new FileWriter(file,true);
+        BufferedWriter bufferedWriter=new BufferedWriter(fileWriter);
+        bufferedWriter.write(line);
+        bufferedWriter.close();
     }
 
     @Override
-    public void DeleteBook(int id) throws IOException {
-        List<Book> list=GetAllBook();
+    public void deleteBook(int id) throws IOException {
+        clearFile();
+        List<Book> list=getAllBook();
         for (Book book:list
              ) {
             if (book.getId()!=id){
-                fileWriter(book,false);
+                addBook(book);
             }
         }
     }
 
     @Override
-    public Book GetBookById(int id) throws IOException {
-        List<Book> list=GetAllBook();
+    public Book getBookById(int id) throws IOException {
+        List<Book> list=getAllBook();
         for (Book book:list
         ) {
             if (book.getId()==id){
@@ -37,7 +43,7 @@ public class FileOperations implements Operations {
     }
 
     @Override
-    public List<Book> GetAllBook() throws IOException {
+    public List<Book> getAllBook() throws IOException {
         String line;
         String[] tempLine;
         Book book;
@@ -63,7 +69,7 @@ public class FileOperations implements Operations {
 
     public int lastIndex() throws IOException {
         int sonIndex=0;
-        List<Book> list=GetAllBook();
+        List<Book> list=getAllBook();
         for (Book book :
                 list) {
             if (book.getId() > sonIndex) {
@@ -73,10 +79,10 @@ public class FileOperations implements Operations {
         return sonIndex+1;
 
     }
-    private void fileWriter(Book book,boolean writeType) throws IOException {
-        String line=book.getId()+","+book.getBookName()+","+book.getBookAuthor()+","+book.getPageNumber()+","+book.getBookTopic()+"\n";
+    private void clearFile() throws IOException {
+        String line="";
         File file = new File("data.txt");
-        FileWriter fileWriter=new FileWriter(file,writeType);
+        FileWriter fileWriter=new FileWriter(file,false);
         BufferedWriter bufferedWriter=new BufferedWriter(fileWriter);
         bufferedWriter.write(line);
         bufferedWriter.close();

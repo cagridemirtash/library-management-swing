@@ -24,6 +24,7 @@ public class FileOperations implements Operations {
                     fileWriter(book,false);
                 }
                 else {
+                    flag++;
                     fileWriter(book,true);
             }
             }

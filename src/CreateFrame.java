@@ -48,10 +48,13 @@ public class CreateFrame extends Frame {
                     book.setBookAuthor(bookAuthor.getText());
                     book.setPageNumber(Integer.parseInt(bookPageNumber.getText()));
                     book.setBookTopic(bookTopic.getText());
-
                     operations.addBook(book);
+                    JOptionPane.showMessageDialog(createPanel,"%s added to file.");
                 } catch (IOException ex) {
-                    System.out.println("IO exception");
+                    JOptionPane.showMessageDialog(createPanel,"File Error","Error",JOptionPane.ERROR_MESSAGE);
+                } catch (NumberFormatException ex){
+                    JOptionPane.showMessageDialog(createPanel,"Invalid page number try again","Error",JOptionPane.ERROR_MESSAGE);
+                    bookPageNumber.setText("");
                 }
 
             }

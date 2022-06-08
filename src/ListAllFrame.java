@@ -14,10 +14,13 @@ public class ListAllFrame extends Frame{
         String labelString;
         Operations operations= new FileOperations();
         List<Book> allBooklist=new ArrayList<>();
+        JPanel listAllPanel = new JPanel();
         try {
             allBooklist=operations.getAllBook();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(listAllPanel,"File Error","Error",JOptionPane.ERROR_MESSAGE);
+        } catch (NullPointerException ex){
+            JOptionPane.showMessageDialog(listAllPanel,"Book not found","Error",JOptionPane.ERROR_MESSAGE);
         }
         DefaultListModel<Book> defaultListModel = new DefaultListModel<>();
         for (Book book :
@@ -27,7 +30,6 @@ public class ListAllFrame extends Frame{
         }
         JList<Book> list = new JList<>(defaultListModel);
         list.setCellRenderer(new BookRenderer());
-        JPanel listAllPanel = new JPanel();
         listAllPanel.setLayout(new GridLayout(2,1));
         labelString=String.format("Book count:%d AvgPageNumber:%.2f Total PageNumber:%d",
                 operations.bookCount(allBooklist),operations.avgFileNumber(allBooklist),

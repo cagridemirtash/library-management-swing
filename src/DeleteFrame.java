@@ -16,10 +16,10 @@ public class DeleteFrame extends Frame {
     DeleteFrame(){
         Operations operations=new FileOperations();
         book=new Book();
-        JPanel updatePanel = new JPanel();
+        JPanel deletePanel = new JPanel();
         Border updateSearch = BorderFactory.createTitledBorder("Enter a id for delete");
-        updatePanel.setBorder(updateSearch);
-        updatePanel.setLayout(new GridLayout(6, 2));
+        deletePanel.setBorder(updateSearch);
+        deletePanel.setLayout(new GridLayout(6, 2));
         JLabel name = new JLabel("Book Name : ");
         JLabel bookNameField = new JLabel("");
         JLabel author = new JLabel("Author Name : ");
@@ -42,23 +42,28 @@ public class DeleteFrame extends Frame {
                     topicField.setText(book.getBookTopic());
                     pageNumberField.setText(String.valueOf(book.getPageNumber()));
                 } catch (IOException ex) {
-
+                    JOptionPane.showMessageDialog(deletePanel,"File Error","Error",JOptionPane.ERROR_MESSAGE);
+                } catch (NullPointerException ex){
+                    JOptionPane.showMessageDialog(deletePanel,"Book not found","Error",JOptionPane.ERROR_MESSAGE);
+                }catch (NumberFormatException ex){
+                    JOptionPane.showMessageDialog(deletePanel,"Invalid Id try again","Error",JOptionPane.ERROR_MESSAGE);
+                    searchKey.setText("");
                 }
             }
         });
-        updatePanel.add(searchKey);
-        updatePanel.add(searchButton);
+        deletePanel.add(searchKey);
+        deletePanel.add(searchButton);
 
 
 
-        updatePanel.add(name);
-        updatePanel.add(bookNameField);
-        updatePanel.add(author);
-        updatePanel.add(authorNameField);
-        updatePanel.add(pageNumber);
-        updatePanel.add(pageNumberField);
-        updatePanel.add(topic);
-        updatePanel.add(topicField);
+        deletePanel.add(name);
+        deletePanel.add(bookNameField);
+        deletePanel.add(author);
+        deletePanel.add(authorNameField);
+        deletePanel.add(pageNumber);
+        deletePanel.add(pageNumberField);
+        deletePanel.add(topic);
+        deletePanel.add(topicField);
 
         JLabel deleteButtonLabel = new JLabel("Click Button for delete -->");
         JButton deleteButton = new JButton("Delete");
@@ -67,14 +72,15 @@ public class DeleteFrame extends Frame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     operations.deleteBook(id);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                    JOptionPane.showMessageDialog(deletePanel,"%s deleted from file.".formatted(book.getBookName()));
+                }catch (IOException ex) {
+                    JOptionPane.showMessageDialog(deletePanel,"File Error","Error",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
-        updatePanel.add(deleteButtonLabel);
-        updatePanel.add(deleteButton);
+        deletePanel.add(deleteButtonLabel);
+        deletePanel.add(deleteButton);
 
-        super.add(updatePanel);
+        super.add(deletePanel);
     }
 }

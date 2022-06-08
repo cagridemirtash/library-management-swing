@@ -67,6 +67,19 @@ public class FileOperations implements Operations {
         return list;
     }
 
+    public void updateBook(Book book) throws IOException {
+        List<Book> list=getAllBook();
+        fileClear();
+        for (Book newBook:list) {
+            if (newBook.getId()!=book.getId()){
+                addBook(newBook);
+            }
+            else{
+                addBook(book);
+            }
+        }
+    }
+
     public int lastIndex() throws IOException {
         int sonIndex=0;
         List<Book> list=getAllBook();

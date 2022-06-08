@@ -35,13 +35,12 @@ public class ListSingleFrame extends Frame{
 
 
                 } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-                catch (NumberFormatException ex){
-
-                }
-                catch (NullPointerException ex){
-
+                    JOptionPane.showMessageDialog(listSinglePanel,"File Error","Error",JOptionPane.ERROR_MESSAGE);
+                } catch (NullPointerException ex){
+                    JOptionPane.showMessageDialog(listSinglePanel,"Book not found","Error",JOptionPane.ERROR_MESSAGE);
+                }catch (NumberFormatException ex){
+                    JOptionPane.showMessageDialog(listSinglePanel,"Invalid Id try again","Error",JOptionPane.ERROR_MESSAGE);
+                    searchKey.setText("");
                 }
             }
         });

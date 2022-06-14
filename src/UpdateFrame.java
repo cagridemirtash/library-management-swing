@@ -51,8 +51,6 @@ public class UpdateFrame extends Frame {
         updatePanel.add(searchKey);
         updatePanel.add(searchButton);
 
-
-
         updatePanel.add(name);
         updatePanel.add(bookNameField);
         updatePanel.add(author);
@@ -86,7 +84,6 @@ public class UpdateFrame extends Frame {
         });
         updatePanel.add(updateButtonLabel);
         updatePanel.add(updateButton);
-
         super.add(updatePanel);
     }
 }

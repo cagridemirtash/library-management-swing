@@ -49,7 +49,7 @@ public class CreateFrame extends Frame {
                     book.setPageNumber(Integer.parseInt(bookPageNumber.getText()));
                     book.setBookTopic(bookTopic.getText());
                     operations.addBook(book);
-                    JOptionPane.showMessageDialog(createPanel,"%s added to file.");
+                    JOptionPane.showMessageDialog(createPanel,"%s added to file.".formatted(book.getBookName()));
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(createPanel,"File Error","Error",JOptionPane.ERROR_MESSAGE);
                 } catch (NumberFormatException ex){

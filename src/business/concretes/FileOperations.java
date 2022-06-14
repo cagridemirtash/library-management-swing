@@ -10,7 +10,7 @@ import java.util.List;
 public class FileOperations implements Operations {
     @Override
     public void addBook(Book book) throws IOException {
-        String line=String.format("%d,%s,%s,%d,%s\n",book.getId(),book.getBookName(),book.getBookAuthor(),book.getPageNumber(),book.getBookTopic());
+        String line=String.format("%d,%s,%s,%d,%s\n", book.getId(), book.getBookName(), book.getBookAuthor(), book.getPageNumber(), book.getBookTopic());
         File file = new File("data.txt");
         FileWriter fileWriter=new FileWriter(file,true);
         BufferedWriter bufferedWriter=new BufferedWriter(fileWriter);
